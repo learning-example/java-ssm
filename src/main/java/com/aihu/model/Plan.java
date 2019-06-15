@@ -2,7 +2,9 @@ package com.aihu.model;
 
 import java.util.Date;
 
+
 public class Plan {
+
     private Integer planId;
 
     private String planName;
@@ -62,4 +64,5 @@ public class Plan {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
 }
