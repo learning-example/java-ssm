@@ -5,6 +5,7 @@ import com.aihu.dao.PlanMapper;
 import com.aihu.model.Plan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.alibaba.fastjson.JSON;
 
 @Service
 public class PlanService {
@@ -13,10 +14,13 @@ public class PlanService {
     @Autowired
     private ExPlanMapper exPlanMapper;
 
-    public Plan selectOne(int id){
+    public String selectOne(int id){
         Plan plan = exPlanMapper.selectOne(id);
-        System.out.println(plan.getPlanId());
-        System.out.println(plan.getPlanName());
-        return plan;
+        if (plan != null){
+            System.out.println(plan.getPlanId());
+            System.out.println(plan.getPlanName());
+            return JSON.toJSONString(plan);
+        }
+        return "";
     }
 }
