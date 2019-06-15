@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aihu.dao.ExPlanMapper" >
+    <resultMap id="BaseResultMap" type="com.aihu.model.Plan" >
+        <result column="plan_id" property="planId" jdbcType="INTEGER" />
+        <result column="plan_name" property="planName" jdbcType="VARCHAR" />
+        <result column="comp_col" property="compCol" jdbcType="VARCHAR" />
+        <result column="rtx_name" property="rtxName" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <select id="selectOne" resultMap="BaseResultMap">
+        SELECT * FROM test_plan where plan_id = #{id}
+    </select>
+    <select id="selectList" resultType="com.aihu.model.Plan">
+        SELECT * FROM test_plan
+    </select>
+</mapper>
