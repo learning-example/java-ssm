@@ -1,5 +1,7 @@
 package com.aihu.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,22 +13,27 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PlanControllerTest {
+public class UserControllerTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
 
     @Test
-    public void testNoPlan(){
-        String excp = null;
-        String real = testRestTemplate.getForObject("/aihu/user_info/openid/5",String.class);
-        Assert.assertEquals(excp,real);
+    public void testNoUser(){
+        String real = testRestTemplate.getForObject("/aihu/user_info/openid/1",String.class);
+        Assert.assertEquals(null,real);
     }
 
     @Test
-    public void testOnePlan(){
-        String excp = "{\"compCol\":\"0\",\"createTime\":1533439634545,\"planId\":1,\"planName\":\"test01\",\"rtxName\":\"\",\"updateTime\":1533439634546}";
-        String real = testRestTemplate.getForObject("/aihu/user_info/openid/1",String.class);
+    public void testOneUser(){
+        testCgi_UserInfo("shenzhen", "/aihu/user_info/openid/10001");
+        testCgi_UserInfo("beijing", "/aihu/user_info/openid/10002");
+    }
+
+    private void testCgi_UserInfo(String excp, String cgi){
+        String resp = testRestTemplate.getForObject(cgi, String.class);
+        JSONObject jObj = JSON.parseObject(resp);
+        String real = (String)jObj.get("city");
         Assert.assertEquals(excp,real);
     }
 

@@ -1,6 +1,8 @@
 package com.aihu.service;
 
 import com.aihu.service.impl.UserServiceImpl;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,20 +13,21 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PlanServiceTest {
+public class UserServiceTest {
 
     @Autowired
-    private PlanService planService = new UserServiceImpl();
+    private UserService userService = new UserServiceImpl();
 
     @Test
-    public void selectPlan() throws Exception {
-        String excp1 = "{\"compCol\":\"0\",\"createTime\":1533439634545,\"planId\":1,\"planName\":\"test01\",\"rtxName\":\"\",\"updateTime\":1533439634546}";
-        String excp2 = "{\"compCol\":\"0\",\"createTime\":1533439685187,\"planId\":2,\"planName\":\"test01\",\"rtxName\":\"\",\"updateTime\":1533439685187}";
-        String excp3 = "{\"compCol\":\"0\",\"createTime\":1533439694087,\"planId\":3,\"planName\":\"test01\",\"rtxName\":\"\",\"updateTime\":1533439694087}";
-        Assert.assertEquals(excp1, planService.selectOne(1));
-        Assert.assertEquals(excp2, planService.selectOne(2));
-        Assert.assertEquals(excp3, planService.selectOne(3));
-        Assert.assertEquals("", planService.selectOne(0));
+    public void selectUser() throws Exception {
+        verifyUserCity("shenzhen", 10001);
+        verifyUserCity("beijing", 10002);
+    }
+
+    private void verifyUserCity(String excp, int id){
+        JSONObject jObj = JSON.parseObject(userService.selectOne(id));
+        String real = (String) jObj.get("city");
+        Assert.assertEquals(excp, real);
     }
 
 }
