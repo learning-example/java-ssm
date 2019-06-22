@@ -1,6 +1,6 @@
 package com.aihu.service;
 
 
-public interface PlanService {
+public interface UserService {
     String selectOne(int id);
 }

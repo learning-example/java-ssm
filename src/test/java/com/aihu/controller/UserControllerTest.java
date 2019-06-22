@@ -19,14 +19,14 @@ public class PlanControllerTest {
     @Test
     public void testNoPlan(){
         String excp = null;
-        String real = testRestTemplate.getForObject("/v1/app/plan?plan_id=0",String.class);
+        String real = testRestTemplate.getForObject("/aihu/user_info/openid/5",String.class);
         Assert.assertEquals(excp,real);
     }
 
     @Test
     public void testOnePlan(){
         String excp = "{\"compCol\":\"0\",\"createTime\":1533439634545,\"planId\":1,\"planName\":\"test01\",\"rtxName\":\"\",\"updateTime\":1533439634546}";
-        String real = testRestTemplate.getForObject("/v1/app/plan?plan_id=1",String.class);
+        String real = testRestTemplate.getForObject("/aihu/user_info/openid/1",String.class);
         Assert.assertEquals(excp,real);
     }
 

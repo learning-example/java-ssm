@@ -1,6 +1,6 @@
 package com.aihu.service;
 
-import com.aihu.service.impl.PlanServiceImpl;
+import com.aihu.service.impl.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class PlanServiceTest {
 
     @Autowired
-    private PlanService planService = new PlanServiceImpl();
+    private PlanService planService = new UserServiceImpl();
 
     @Test
     public void selectPlan() throws Exception {
